@@ -30,10 +30,6 @@ public class TestRTMybatisTest {
         testRT.setGid(150);
         int n = testRTService.save(testRT);
         assertEquals(1, n);
-
-        //if (true)
-        //    throw new RuntimeException("JJJ");  we test tx rollback, it works
-
     }
 
     @Test
