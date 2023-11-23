@@ -4,7 +4,7 @@ Because certain MySQL wire protocols have not been implemented by Manticore, som
 
 ## Preparation
 
-#### Connect to Manticore using the mysql client
+#### Connect to Manticore using the MySQL client
  
 Run 
 ```
