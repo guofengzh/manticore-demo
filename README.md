@@ -113,7 +113,7 @@ Caused by: java.sql.SQLException: Could not map transaction isolation '<empty>' 
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:119) ~[spring-test-6.0.11.jar:6.0.11]
 	... 72 more
 ```
-HikariCP datasource pool tries to get the transaction isolation before it makes a connection to Manticore.
+HikariCP tries to get the transaction isolation before it makes a connection to Manticore.
 
 The reason has been described in [Notes on MySQL connectors](https://manual.manticoresearch.com/Connecting_to_the_server/MySQL_protocol?edit#Notes-on-MySQL-connectors)
 > ...as the connector can try running certain SQL commands not implemented yet in Manticore.
