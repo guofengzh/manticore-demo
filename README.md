@@ -115,6 +115,6 @@ Caused by: java.sql.SQLException: Could not map transaction isolation '<empty>' 
 ```
 HikariCP tries to get the transaction isolation before it makes a connection to Manticore.
 
-The reason has been described in [Notes on MySQL connectors](https://manual.manticoresearch.com/Connecting_to_the_server/MySQL_protocol?edit#Notes-on-MySQL-connectors)
+The reason has been described in [Notes on MySQL connectors](https://manual.manticoresearch.com/Connecting_to_the_server/MySQL_protocol#Notes-on-MySQL-connectors)
 > ...as the connector can try running certain SQL commands not implemented yet in Manticore.
 
