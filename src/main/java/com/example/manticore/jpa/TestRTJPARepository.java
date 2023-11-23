@@ -1,6 +1,5 @@
 package com.example.manticore.jpa;
 
-import org.apache.ibatis.annotations.Options;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -11,7 +10,6 @@ public interface TestRTJPARepository extends JpaRepository<TestRTJPA, Long> {
 
     @Modifying
     @Query(value = "INSERT INTO testrt(title, content, gid) VALUES( :#{#testRT.title}, :#{#testRT.content}, :#{#testRT.gid})", nativeQuery = true)
-    @Options(useGeneratedKeys = true, flushCache = Options.FlushCachePolicy.TRUE)
     public int saveTestRT(TestRTJPA testRT);
 
     @Query(value = "SELECT * FROM testrt WHERE MATCH(:matcher)", nativeQuery = true)
