@@ -1,7 +1,5 @@
 package com.example.manticore.jpa;
 
-import com.example.manticore.mybatis.TestRT;
-import com.example.manticore.mybatis.TestRTMapper;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
