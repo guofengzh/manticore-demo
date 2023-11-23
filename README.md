@@ -24,7 +24,7 @@ mvn test
 
 The test passed.
 
-## Run the test again using HikariCP datasource
+## Using HikariCP datasource
 
 Swtich to use HikariCP in DataSourceConfig.java:
 ```
