@@ -1,6 +1,6 @@
-# A demo using MyBatis and JPA to access Manticore Search
+# A demo using MyBatis and JPA to access Manticore
 
-Because certain MySQL wire protocols have not been implemented by Manticore, some Java data source pool manager, like [HikariCP](https://github.com/brettwooldridge/HikariCP#gear-configuration-knobs-baby), cannot be used with Manticore. In this demo app, we use MyBatis' PooledDataSource, which is configured in DataSourceConfig.java.
+Because certain MySQL wire protocols have not been implemented by Manticore, some Java data sources, like [HikariCP](https://github.com/brettwooldridge/HikariCP#gear-configuration-knobs-baby), cannot be used with Manticore. In this demo app, we use MyBatis' PooledDataSource, which is configured in DataSourceConfig.java.
 
 ## Preparation
 
