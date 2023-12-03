@@ -48,3 +48,5 @@ This has been described in [Notes on MySQL connectors](https://manual.manticores
 
 To work arround with this issue, AspectJ is used to capture the excetion and return an arbitrary isolation level for Manticore to work with HikariCP.
 
+It should be noted that Manticore do not aim to provide isolation ([it is overly isolated](https://manual.manticoresearch.com/Data_creation_and_modification/Transactions)), the isolation level returned has no guidance for Manticore.
+
