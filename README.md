@@ -28,6 +28,7 @@ The test passed.
 
 But you will see the exceptions on the console:
 ```
+c.e.m.a.GetTransactionIsolationAspect    : The exception captured:
 java.sql.SQLException: Could not map transaction isolation '<empty>' to a valid JDBC level.
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130) ~[mysql-connector-j-8.2.0.jar:8.2.0]
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:98) ~[mysql-connector-j-8.2.0.jar:8.2.0]
