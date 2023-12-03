@@ -6,7 +6,7 @@
 
 ## Create an index in Manticore
 
-Connect to Manticore using the MySQL client
+Connect to Manticore using the MySQL client.
  
 Run 
 ```
@@ -26,7 +26,7 @@ mvnw test
 
 The test passed.
 
-But you will see exceptions on the console:
+But you will see the exceptions on the console:
 ```
 java.sql.SQLException: Could not map transaction isolation '<empty>' to a valid JDBC level.
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130) ~[mysql-connector-j-8.2.0.jar:8.2.0]
@@ -41,10 +41,10 @@ java.sql.SQLException: Could not map transaction isolation '<empty>' to a valid 
 	at com.zaxxer.hikari.pool.PoolBase.checkDefaultIsolation(PoolBase.java:480) ~[HikariCP-5.0.1.jar:?]
     ...
 ```
-This is because [HikariCP](https://github.com/brettwooldridge/HikariCP#gear-configuration-knobs-baby) want to get the default transaction isolation level from Manticore but Manticore response with the wrong string value. Reference [1618](https://github.com/manticoresoftware/manticoresearch/issues/1618#issuecomment-1825929815).
+This is because [HikariCP](https://github.com/brettwooldridge/HikariCP#gear-configuration-knobs-baby) want to get the default transaction isolation level from Manticore but Manticore response with the wrong string value. Ref: [1618](https://github.com/manticoresoftware/manticoresearch/issues/1618#issuecomment-1825929815).
 
 This has been described in [Notes on MySQL connectors](https://manual.manticoresearch.com/Connecting_to_the_server/MySQL_protocol#Notes-on-MySQL-connectors)
 > ...as the connector can try running certain SQL commands not implemented yet in Manticore.
 
-To work arround with this issue, we use AspectJ to capture the excetion and return an arbitrary isolation level for Manticore to work with HikariCP.
+To work arround with this issue, AspectJ is used to capture the excetion and return an arbitrary isolation level for Manticore to work with HikariCP.
 
