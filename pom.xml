@@ -15,7 +15,8 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.1.3</version>
+		<version>3.2.0</version>
+		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
@@ -71,15 +72,17 @@
 			<version>4.0.0</version>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
 			<version>8.2.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.18.30</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
@@ -105,8 +108,48 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>dev.aspectj</groupId>
+				<artifactId>aspectj-maven-plugin</artifactId>
+				<version>1.13.1</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.aspectj</groupId>
+						<artifactId>aspectjtools</artifactId>
+						<version>${aspectj.version}</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<parameters>true</parameters>
+					<complianceLevel>${java.version}</complianceLevel>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>test-compile</goal>
+						</goals>
+						<configuration>
+							<showWeaveInfo>true</showWeaveInfo>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<agents>
+						<aspectj>${project.build.directory}/aspectj/aspectjweaver-${aspectj.version}.jar</aspectj>
+					</agents>
+					<jvmArguments>
+						-Xmx1536M
+						--add-exports=java.base/sun.nio.ch=ALL-UNNAMED
+						--add-opens=java.base/java.lang=ALL-UNNAMED
+						--add-opens=java.base/java.lang.reflect=ALL-UNNAMED
+						--add-opens=java.base/java.io=ALL-UNNAMED
+						--add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED
+					</jvmArguments>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -123,6 +166,41 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.1.2</version>
+				<configuration>
+					<argLine>-javaagent:${project.build.directory}/aspectj/aspectjweaver-${aspectj.version}.jar
+						-Xmx1536M
+						--add-exports=java.base/sun.nio.ch=ALL-UNNAMED
+						--add-opens=java.base/java.lang=ALL-UNNAMED
+						--add-opens=java.base/java.lang.reflect=ALL-UNNAMED
+						--add-opens=java.base/java.io=ALL-UNNAMED
+						--add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED
+					</argLine>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<artifactItems>
+						<artifactItem>
+							<groupId>org.aspectj</groupId>
+							<artifactId>aspectjweaver</artifactId>
+							<version>${aspectj.version}</version>
+							<type>jar</type>
+							<overWrite>false</overWrite>
+							<outputDirectory>${project.build.directory}/aspectj</outputDirectory>
+						</artifactItem>
+					</artifactItems>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

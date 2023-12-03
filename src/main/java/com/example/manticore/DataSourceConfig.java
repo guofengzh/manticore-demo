@@ -2,7 +2,6 @@ package com.example.manticore;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import org.apache.ibatis.datasource.pooled.PooledDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,14 +16,8 @@ public class DataSourceConfig {
     public static final String PASSWORD = "password";
 
     @Bean
-    public DataSource dataSource(){
-        return createMyBatisPooledDataSource();
-        // Uncommenting the following statement will throw "java.sql.SQLException: Could not map transaction isolation '<empty>' to a valid JDBC level."
-        // return createHikariDataSource();
-    }
-
-    private PooledDataSource createMyBatisPooledDataSource() {
-        return new PooledDataSource(DRIVER_CLASS, DB_URL, USERNAME, PASSWORD);
+    public DataSource dataSource() {
+        return createHikariDataSource();
     }
 
     private HikariDataSource createHikariDataSource() {
