@@ -24,13 +24,9 @@ public class GetTransactionIsolationAspect {
         try {
             result = joinPoint.proceed();
         } catch (SQLException e) {
-            String msg = e.getMessage();
-            if (msg.contains("'<empty>'") || msg.contains("'0'")) {
-                logger.info("The exception captured:", e);
-                logger.warn("'READ-COMMITTED' is returned instead as the default transaction isolation level.");
-                return Connection.TRANSACTION_READ_COMMITTED;
-            } else
-                throw e;
+            logger.info("The exception captured:", e);
+            logger.warn("'READ-COMMITTED' is returned instead as the default transaction isolation level.");
+            return Connection.TRANSACTION_READ_COMMITTED;
         }
 
         // Custom logic after the method execution
