@@ -15,7 +15,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.0</version>
+		<version>3.3.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -25,7 +25,7 @@
 		<java.version>17</java.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
-		<lombok.version>1.18.30</lombok.version>
+		<lombok.version>1.18.34</lombok.version>
 	</properties>
 
 	<dependencies>
@@ -60,7 +60,7 @@
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
-			<version>3.5.14</version>
+			<version>3.5.16</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mybatis</groupId>
@@ -70,7 +70,7 @@
 		<dependency>
 			<groupId>com.manticoresearch</groupId>
 			<artifactId>manticoresearch</artifactId>
-			<version>4.0.0</version>
+			<version>5.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -94,7 +94,7 @@
         <dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-slf4j2-impl</artifactId>
-			<version>2.22.0</version>
+			<version>2.23.1</version>
 		</dependency>
 
 		<!-- testing tools -->

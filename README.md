@@ -42,7 +42,7 @@ java.sql.SQLException: Could not map transaction isolation '<empty>' to a valid 
 	at com.zaxxer.hikari.pool.PoolBase.checkDefaultIsolation(PoolBase.java:480) ~[HikariCP-5.0.1.jar:?]
     ...
 ```
-This is because [HikariCP](https://github.com/brettwooldridge/HikariCP#gear-configuration-knobs-baby) want to get the default transaction isolation level from Manticore, but Manticore response with the wrong string value. Ref: [1618](https://github.com/manticoresoftware/manticoresearch/issues/1618#issuecomment-1825929815).
+This is because [HikariCP](https://github.com/brettwooldridge/HikariCP#gear-configuration-knobs-baby) want to get the default transaction isolation level from Manticore, but Manticore response with the wrong string value. Ref: [1618](https://github.com/manticoresoftware/manticoresearch/issues/1618).
 
 This has been described in [Notes on MySQL connectors](https://manual.manticoresearch.com/Connecting_to_the_server/MySQL_protocol#Notes-on-MySQL-connectors)
 > ...as the connector can try running certain SQL commands not implemented yet in Manticore.
